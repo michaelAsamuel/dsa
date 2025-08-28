@@ -13,6 +13,7 @@ public class Pascal {
         System.out.println( generate(5));
     }
 
+
     public static void printPascalTriangle(int num){
         int spaces = num;
         int k =1;

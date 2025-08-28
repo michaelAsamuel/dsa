@@ -7,6 +7,7 @@ public class FirstNonRepeatingCharacter {
 
     }
 
+
     public static int firstUniqChar(String s) {
         int[] freq = new int[256];
         for(char c: s.toCharArray()){
@@ -14,7 +15,7 @@ public class FirstNonRepeatingCharacter {
         }
         for(int i =0; i< s.length(); i++){
             if(freq[s.charAt(i)]==1){
-                return i;
+                return s.charAt(i);
             }
         }
         return -1;

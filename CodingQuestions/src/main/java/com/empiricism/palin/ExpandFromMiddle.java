@@ -25,8 +25,6 @@ public class ExpandFromMiddle {
                 start = i - ((len -1)/2);
                 end = i+ (len/2);
             }
-
-
         };
         return s.substring(start, end+1);
     }

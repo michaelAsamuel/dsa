@@ -2,23 +2,28 @@ package com.empiricism.simple;
 
 import java.lang.reflect.Array;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class LongestSubstring {
 
     public static void main(String[] args) {
 
-        System.out.println(Arrays.toString(getLongest("aabbbbbCdAAdddddddd")));
-        System.out.println(Arrays.toString(getLongest("aabbbbCCddd")));
-        System.out.println(Arrays.toString(getLongest("10000111")));
-        System.out.println(Arrays.toString(getLongest("c")));
-        System.out.println(Arrays.toString(getLongest("")));
+//        System.out.println(Arrays.toString(getLongest("aabbbbbCdAAdddddddd")));
+//        System.out.println(Arrays.toString(getLongest("aabbbbCCddd")));
+//        System.out.println(Arrays.toString(getLongest("10000111")));
+//        System.out.println(Arrays.toString(getLongest("c")));
+//        System.out.println(Arrays.toString(getLongest("")));
 
 
-       longestSubstring("aabbbbbCdAAdddddddd");
-        longestSubstring("aabbbbCCddd");
-        longestSubstring("10000111");
-        longestSubstring("c");
-        longestSubstring("");
+//       longestSubstring("aabbbbbCdAAdddddddd");
+//        longestSubstring("aabbbbCCddd");
+//        longestSubstring("10000111");
+//        longestSubstring("c");
+//        longestSubstring("");
+
+//        System.out.println(lengthOfLongestSubstring("aabbbbbCdAAdddddddd"));
+
 
     }
 
@@ -59,7 +64,7 @@ public class LongestSubstring {
     }
 
 
-    private static void longestSubstring(String s) {
+    private static int longestSubstring(String s) {
         //if (s.length() == 0) return new int[]{-1, 0};
         int count = 1;
         int max = 0;
@@ -82,6 +87,33 @@ public class LongestSubstring {
             longestIndex=index;
 
         }
-        System.out.println(longestIndex + "  " + max);
+
+        return max;
+
     }
+
+        public int lengthOfLongestSubstring(String s) {
+            Map<Character, Integer> charIndex = new HashMap<>();
+            int maxLength = 0;
+            int left = 0;
+
+            for (int right = 0; right < s.length(); right++) {
+                char currentChar = s.charAt(right);
+
+                // If character is repeated, move 'left' pointer
+                if (charIndex.containsKey(currentChar)) {
+                    left = Math.max(left, charIndex.get(currentChar) + 1);
+                }
+
+                // Store/Update the last occurrence of the character
+                charIndex.put(currentChar, right);
+
+                // Update max length
+                maxLength = Math.max(maxLength, right - left + 1);
+            }
+
+            return maxLength;
+        }
+
+
 }
