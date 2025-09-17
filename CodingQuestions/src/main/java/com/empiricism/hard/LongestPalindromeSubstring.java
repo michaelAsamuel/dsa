@@ -8,64 +8,39 @@ import java.util.Set;
 
 //https://leetcode.com/problems/longest-palindromic-substring/submissions/1623402388/
 //https://leetcode.com/problems/palindromic-substrings/description/
+//https://leetcode.com/problems/longest-palindromic-substring/description/
 public class LongestPalindromeSubstring {
     public static String longestPalindromeSubstring(String s) {
-        String res = "";
-        int maxLength =0;
-        for(int i=0; i < s.length() ; i++){
+        if (s == null || s.length() < 1) return "";
 
-//            ODD
-            int l=i, r=i;
+        int start = 0, end = 0;
 
-            while(l >=0 && r < s.length() && s.charAt(l) == s.charAt(r)){
-                if(r-l+1 > maxLength) {
-                    maxLength = r - l + 1;
-                    res=s.substring(l,r+1);
-                }
-                l--;
-                r++;
+        for (int i = 0; i < s.length(); i++) {
+            // Odd length palindrome
+            int left = i, right = i;
+            while (left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)) {
+                left--;
+                right++;
             }
-//          even
-            l=i;
-            r=i+1;
-            while(l >=0 && r < s.length() && s.charAt(l) == s.charAt(r)){
-                if(r-l+1 > maxLength) {
-                    maxLength = r - l + 1;
-                    res=s.substring(l,r+1);
-                }
-                l--;
-                r++;
+            int len1 = right - left - 1;
+
+            // Even length palindrome
+            left = i;
+            right = i + 1;
+            while (left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)) {
+                left--;
+                right++;
             }
+            int len2 = right - left - 1;
 
-
-
+            int len = Math.max(len1, len2);
+            if (len > (end - start)) {
+                start = i - (len - 1) / 2;
+                end = i + len / 2;
+            }
         }
-        return res;
-    }
 
-//    https://leetcode.com/problems/longest-palindromic-substring/
-    public int countSubstrings(String s) {
-        int res = 0;
-        int maxLength =0;
-        for(int i=0; i < s.length(); i++){
-            // ODD
-            int l=i, r=i;
-            while(l>=0 && r < s.length() && s.charAt(l) == s.charAt(r)){
-                res++;
-                l--;
-                r++;
-            }
-
-            // Even
-            l=i; r=i+1;
-            while(l>=0 && r < s.length() && s.charAt(l) == s.charAt(r)){
-                res++;
-                l--;
-                r++;
-            }
-
-        }
-        return res;
+        return s.substring(start, end + 1);
 
     }
 
@@ -81,6 +56,7 @@ public class LongestPalindromeSubstring {
         System.out.println(longestPalindromeSubstring(s));
         s="";
         System.out.println(longestPalindromeSubstring(s));
+
 
 
 
