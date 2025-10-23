@@ -2,7 +2,9 @@ package com.empiricism.dp;
 
 public class ClimbStairs {
     public static int climbStairs(int n) {
+        //Base case
         if(n<=2) return n;
+        // Sub problems
         int first=1,second=2,current=3;
         for(int i=3; i<=n; i++){
             current= first + second;

@@ -35,6 +35,19 @@ public class LinkedListCycle {
         return false; // reached end, no cycle
     }
 
+//    public boolean hasCycleHashset(int[] input) {
+//        int p1 = 0;
+//
+//        while (current != null) {
+//            if (visited.contains(current)) {
+//                return true; // cycle found
+//            }
+//            visited.add(current);
+//            current = current.next;
+//        }
+//        return false; // reached end, no cycle
+//    }
+
 
     public static void main(String[] args) {
         // Create a linked list with a cycle: 1 -> 2 -> 3 -> 4 -> 2 (cycle back to 2)
