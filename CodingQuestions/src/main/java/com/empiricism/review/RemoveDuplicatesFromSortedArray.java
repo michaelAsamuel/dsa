@@ -1,4 +1,4 @@
-package com.empiricism.scratch;
+package com.empiricism.review;
 
 import java.util.Arrays;
 

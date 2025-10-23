@@ -34,8 +34,6 @@ public class LongestPalindrome {
                 r++;
             }
 
-            System.out.println(res);
-
         }
         return res;
     }
