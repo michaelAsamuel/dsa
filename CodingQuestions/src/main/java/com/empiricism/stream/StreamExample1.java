@@ -33,6 +33,21 @@ import java.util.Map.Entry;
 //        return name + " (" + salary + ")";
 //    }
 //}
+class Employee1 {
+    private String name;
+    private String department;
+    private int salary;
+
+    public Employee1(String name, String department, int salary) {
+        this.name = name;
+        this.department = department;
+        this.salary = salary;
+    }
+
+    public String getName() { return name; }
+    public String getDepartment() { return department; }
+    public int getSalary() { return salary; }
+}
 
 public class StreamExample1 {
     public static void main(String[] args) {
@@ -82,6 +97,18 @@ public class StreamExample1 {
         System.out.println("\n4. Employees Grouped by Department:");
         employeesByDept.forEach((dept, emps) ->
                 System.out.println(dept + ": " + emps));
+
+        //5. Max Salary
+        System.out.println(
+        employees.stream().mapToDouble(Employee::getSalary).max().orElse(0)
+        );
+        System.out.println(
+                employees.stream().
+                        max(Comparator.comparingDouble(Employee::getSalary))
+                .map(Employee::getSalary).
+                        orElse(0)
+        );
+
     }
 }
 
